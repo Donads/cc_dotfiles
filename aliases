@@ -124,7 +124,7 @@ alias gbb='git bisect bad'
 alias gcl="git clone"
 
 # docker-compose
-alias dc="docker-compose"
+alias dc="docker compose"
 alias dcr="dc run --rm --service-ports"
 alias dcR="dc run --rm" # no service ports
 alias dcrwb="dcr web bash"
@@ -132,6 +132,7 @@ alias dcb="dc build"
 alias dcps="dc ps"
 alias dcS="dc stop"
 alias dcup="dc up"
+alias dcdown="dc down"
 
 # Common shell functions
 alias less='less -r'

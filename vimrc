@@ -39,7 +39,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.cache " skip tmp files
 set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 set spellfile=$HOME/.vim-spell.utf-8.add " Set spellfile to location that is guaranteed to exist
 set complete+=kspell " Autocomplete with dictionary words when spell check is on
-set diffopt=filler,closeoff,vertical " Always use vertical diffs
+set diffopt=filler,vertical " Always use vertical diffs
 set splitbelow " Open new split panes to right and bottom,
 set splitright " which feels more natural
 set spelllang=en_us,pt_br " we're trying to be bilingual

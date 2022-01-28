@@ -75,3 +75,10 @@ setopt interactivecomments
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+if [ -f ${HOME}/.zplug/init.zsh  ]; then
+  source ${HOME}/.zplug/init.zsh
+fi
+
+# Enhancd
+source ~/.zplug/repos/b4b4r07/enhancd/init.sh
