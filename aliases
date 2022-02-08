@@ -21,6 +21,7 @@ alias clr='clear'
 # Show human friendly numbers and colors
 alias df='df -h'
 alias du='du -h -d 2'
+alias free='free -h'
 
 alias ll='ls -lGh'
 alias la='ll -a'
@@ -47,11 +48,26 @@ if [ $MACVIM_INSTALLED -eq 0 ]; then
   alias vim="mvim -v"
 fi
 
+# Use Neovim instead of Vim
+alias vim='nvim'
+alias vimdiff='nvim -d'
+alias oldvim='\vim'
+
+# Use LVIM instead of Vim and Neovim
+# alias nvim='lvim'
+# alias oldnvim='\nvim'
+
 # mimic vim functions
 alias :q='exit'
 
 # vimrc editing
 alias ve='vim $HOME/.vimrc'
+
+# init.lua editing
+alias nve='nvim $HOME/.config/nvim/init.lua'
+
+# neovim plugins.vim editing
+# alias nvpe='nvim $HOME/.config/nvim/vim/plugins.vim'
 
 # zsh profile editing
 alias ze='vim $HOME/.zshrc'

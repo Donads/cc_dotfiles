@@ -8,6 +8,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'lifepillar/vim-solarized8'
 Plug 'gruvbox-community/gruvbox' " default colorscheme
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'scrooloose/nerdtree' " file explorer
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
 Plug 'pbrisbin/vim-mkdir' " create folder if it doesn't exist

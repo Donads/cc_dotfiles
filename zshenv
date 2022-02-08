@@ -1,5 +1,14 @@
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export VISUAL='vim'
+  # export EDITOR='vim'
+else
+  export VISUAL='nvim'
+  # export EDITOR='nvim'
+fi
+
 # use vim as the visual editor
-export VISUAL=vim
+# export VISUAL=vim
 export EDITOR=$VISUAL
 export LC_ALL=$LANG
 
