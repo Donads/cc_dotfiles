@@ -54,8 +54,8 @@ alias vimdiff='nvim -d'
 alias oldvim='\vim'
 
 # Use LVIM instead of Vim and Neovim
-# alias nvim='lvim'
-# alias oldnvim='\nvim'
+alias nvim='lvim'
+alias oldnvim='\nvim'
 
 # mimic vim functions
 alias :q='exit'

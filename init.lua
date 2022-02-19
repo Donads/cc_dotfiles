@@ -66,6 +66,16 @@ require('packer').startup(function()
   use 'christoomey/vim-tmux-runner'
   use 'jiangmiao/auto-pairs'
   use 'easymotion/vim-easymotion'
+  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup {} end
+  }
+  use {'antoinemadec/FixCursorHold.nvim'}
+  use {'unblevable/quick-scope'}
 end)
 
 --Set highlight on search
@@ -98,34 +108,34 @@ vim.cmd [[colorscheme onedark]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
-vim.cmd [[set backspace=2   ]] -- Backspace deletes like most programs in insert mode
-vim.cmd [[set nobackup]]
-vim.cmd [[set nowritebackup]]
-vim.cmd [[set noswapfile    ]] -- http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-vim.cmd [[set ruler         ]] -- show the cursor position all the time
-vim.cmd [[set hlsearch]]
-vim.cmd [[set showcmd       ]] -- display incomplete commands
-vim.cmd [[set incsearch     ]] -- do incremental searching
-vim.cmd [[set laststatus=2  ]] -- Always display the status line
-vim.cmd [[set autowrite     ]] -- Automatically :write before running commands
-vim.cmd [[set visualbell    ]] -- No noise
-vim.cmd [[set noerrorbells  ]] -- No noise
+-- Custom settings from vimrc
+vim.o.autowrite = true -- Automatically :write before running commands
+vim.o.errorbells = false -- No noise
+vim.o.backspace = "indent,eol,start" -- Backspace deletes like most programs in insert mode
+vim.o.backup = false
+vim.o.hidden = true
+vim.o.incsearch = true -- Do incremental searching
+vim.o.laststatus = 2 -- Always display the status line
+vim.o.listchars = "tab:»·,trail:·,nbsp:·" -- Displays extra whitespaces
+vim.o.ruler = true -- Shows the cursor position all the time
+vim.o.showcmd = true -- Displays incomplete commands
+vim.o.shiftround = true
+vim.o.splitbelow = true -- Open new split panes to right and bottom,
+vim.o.splitright = true -- which feels more natural
+vim.o.visualbell = true -- No noise
+vim.o.wildignore = "*/tmp/*,*.so,*.swp,*.zip,*.cache" -- Skip tmp files
+vim.o.wildmode = "list:longest,list:full" -- Enable list of completion
+vim.o.writebackup = false
+
+vim.bo.expandtab = true
+vim.bo.shiftwidth = 2
+vim.bo.swapfile = false
+vim.bo.tabstop = 2 -- Softtabs, 2 spaces
+
+vim.wo.colorcolumn = "81,121"
+vim.wo.list = true
+
 vim.cmd [[set t_vb=         ]] -- No noise
-vim.cmd [[set tabstop=2 ]] -- Softtabs, 2 spaces
-vim.cmd [[set shiftwidth=2]]
-vim.cmd [[set shiftround]]
-vim.cmd [[set expandtab]]
-vim.cmd [[set colorcolumn=81,121 ]]
-vim.cmd [[set wildmode=list:longest,list:full ]] -- enable list of completion
-vim.cmd [[set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.cache ]] -- skip tmp files
-vim.cmd [[set list listchars=tab:»·,trail:·,nbsp:· ]] -- Display extra whitespace
-vim.cmd [[set splitbelow ]] -- Open new split panes to right and bottom,
-vim.cmd [[set splitright ]] -- which feels more natural
-vim.cmd [[set hidden]]
--- vim.cmd [[set diffopt=filler,vertical ]] -- Always use vertical diffs
--- vim.cmd [[set complete+=kspell ]] -- Autocomplete with dictionary words when spell check is on
--- vim.cmd [[set spellfile=$HOME/.vim-spell.utf-8.add ]] -- Set spellfile to location that is guaranteed to exist
--- vim.cmd [[set spelllang=en_us,pt_br ]] -- we're trying to be bilingual
 -- End custom settings from vimrc
 
 --Set statusbar
@@ -331,6 +341,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 lspconfig.sumneko_lua.setup {
+  cmd = { vim.env.HOME .. "/.local/share/nvim/lsp_servers/lua-language-server/bin/lua-language-server" },
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -405,13 +416,34 @@ cmp.setup {
 }
 -- vim: ts=2 sts=2 sw=2 et
 
+-- LSP Servers
+-- Solargraph (Ruby)
+require('lspconfig').solargraph.setup{}
+-- ```lua
+--   Commands:
+--   
+--   Default Values:
+--     cmd = { "solargraph", "stdio" }
+--     filetypes = { "ruby" }
+--     init_options = {
+--       formatting = true
+--     }
+--     root_dir = root_pattern("Gemfile", ".git")
+--     settings = {
+--       solargraph = {
+--         diagnostics = true
+--       }
+--     }
+-- ```
+-- End of LSP Servers
+
+-- set background=dark " cause I'm not a psychopath
 -- init.vim
 vim.cmd([[
 	" automatically rebalance windows on vim resize
 	autocmd VimResized * :wincmd =
 
 	if !exists('g:vscode')
-	  set background=dark " cause I'm not a psychopath
 
 	  " <Leader>f{char} to move to {char}
 	  nmap <Leader>f <Plug>(easymotion-overwin-f)
