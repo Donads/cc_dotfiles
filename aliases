@@ -54,7 +54,7 @@ alias vimdiff='nvim -d'
 alias oldvim='\vim'
 
 # Use LVIM instead of Vim and Neovim
-alias nvim='lvim'
+# alias nvim='lvim'
 alias oldnvim='\nvim'
 
 # mimic vim functions
@@ -65,6 +65,7 @@ alias ve='vim $HOME/.vimrc'
 
 # init.lua editing
 alias nve='nvim $HOME/.config/nvim/init.lua'
+alias lve='lvim $HOME/.config/lvim/config.lua'
 
 # neovim plugins.vim editing
 # alias nvpe='nvim $HOME/.config/nvim/vim/plugins.vim'
